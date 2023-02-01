@@ -1,9 +1,11 @@
-
 const mongoose = require('mongoose');
 
 const url = process.env.MONGODB_URI;
 
 mongoose.set('strictQuery',false);
+
+console.log('Connecting to', url);
+
 mongoose.connect(url)
     .then(result =>{
         console.log('connected to database')
@@ -16,8 +18,6 @@ const personSchema = mongoose.Schema({
     name: String,
     number: String
 })
-
-const Person = mongoose.model('Person', personSchema);
 
 personSchema.set('toJSON', {
     transform: (document, returnedObject) => {
